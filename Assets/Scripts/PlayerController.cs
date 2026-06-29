@@ -53,6 +53,7 @@ public class PlayerController : MonoBehaviour
 
     public void EndStartingPose()
     {
+        Debug.Log("EndStartingPose appelé !");
         _anim.SetBool("IsPosing", false);
         _movement = Vector2.zero;
         _rb.linearVelocity = Vector2.zero;
@@ -77,8 +78,9 @@ public class PlayerController : MonoBehaviour
         Vector2 dir = _movement.magnitude > 1f ? _movement.normalized : _movement;
         _rb.linearVelocity = dir * speed;
         _sr.sortingOrder = Mathf.RoundToInt(-transform.position.y * 10);
+
         _anim.SetFloat("Horizontal", _movement.x);
-        _anim.SetFloat("Velocity", Mathf.Abs(_movement.x));
+        _anim.SetFloat("Velocity", _movement.magnitude);
 
         if (Mathf.Abs(_movement.x) > 0.01f)
         {
