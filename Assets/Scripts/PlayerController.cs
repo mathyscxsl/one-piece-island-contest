@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private int attackDamage = 10;
 
+
     private int _currentHealth;
 
     private Rigidbody2D _rb;
@@ -24,6 +25,7 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer _sr;
 
     private bool _canMove = false;
+
 
     private void Awake()
     {
@@ -34,37 +36,35 @@ public class PlayerController : MonoBehaviour
         _currentHealth = maxHealth;
     }
 
+
     private void Start()
     {
         StartStartingPose();
     }
 
+
     private void StartStartingPose()
     {
         _canMove = false;
-
         _movement = Vector2.zero;
         _rb.linearVelocity = Vector2.zero;
-
         _anim.SetBool("IsPosing", true);
     }
 
     public void EndStartingPose()
     {
         _anim.SetBool("IsPosing", false);
-
         _movement = Vector2.zero;
         _rb.linearVelocity = Vector2.zero;
-
         _canMove = true;
     }
 
+
     private void OnMove(InputValue value)
     {
-        if (!_canMove) return;
-
         _movement = value.Get<Vector2>();
     }
+
 
     private void FixedUpdate()
     {
@@ -74,24 +74,19 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        // Mouvement horizontal uniquement
-        _rb.linearVelocity = new Vector2(_movement.x, 0f) * speed;
-
-        // Animation
+        Vector2 dir = _movement.magnitude > 1f ? _movement.normalized : _movement;
+        _rb.linearVelocity = dir * speed;
+        _sr.sortingOrder = Mathf.RoundToInt(-transform.position.y * 10);
         _anim.SetFloat("Horizontal", _movement.x);
         _anim.SetFloat("Velocity", Mathf.Abs(_movement.x));
 
         if (Mathf.Abs(_movement.x) > 0.01f)
         {
             _anim.SetFloat("LastHorizontal", _movement.x);
-        }
-
-        // Flip sprite
-        if (Mathf.Abs(_movement.x) > 0.01f)
-        {
             _sr.flipX = _movement.x < 0;
         }
     }
+
 
     public void TakeDamage(int damage)
     {
@@ -104,13 +99,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+
     private void Die()
     {
         _canMove = false;
         _rb.linearVelocity = Vector2.zero;
-
         Debug.Log($"{gameObject.name} est mort.");
     }
+
 
     public int GetCurrentHealth() => _currentHealth;
     public int GetMaxHealth() => maxHealth;
