@@ -1,0 +1,884 @@
+fileFormatVersion: 2
+guid: 14aebd1a6f5764e019db02f6b116f8d1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8540502928788354859
+    second: marineswordsman _0
+  - first:
+      213: -4850100527373656502
+    second: marineswordsman _1
+  - first:
+      213: -1708266791412268847
+    second: marineswordsman _2
+  - first:
+      213: 6435001326287139267
+    second: marineswordsman _3
+  - first:
+      213: 7421896587960466559
+    second: marineswordsman _4
+  - first:
+      213: -1968128856010812880
+    second: marineswordsman _5
+  - first:
+      213: -7253453163060631175
+    second: marineswordsman _6
+  - first:
+      213: -1653521379346899368
+    second: marineswordsman _7
+  - first:
+      213: 169408834918552506
+    second: marineswordsman _8
+  - first:
+      213: 3155391077920116833
+    second: marineswordsman _9
+  - first:
+      213: -7285281856720611892
+    second: marineswordsman _10
+  - first:
+      213: 2885458567803273732
+    second: marineswordsman _11
+  - first:
+      213: 337614469656772855
+    second: marineswordsman _12
+  - first:
+      213: 2074542429738519047
+    second: marineswordsman _13
+  - first:
+      213: 4094657015944113305
+    second: marineswordsman _14
+  - first:
+      213: -5106134510473084963
+    second: marineswordsman _15
+  - first:
+      213: -7883365105611373205
+    second: marineswordsman _16
+  - first:
+      213: 1928354278611910093
+    second: marineswordsman _17
+  - first:
+      213: 5531487469308537890
+    second: marineswordsman _18
+  - first:
+      213: -8540413988701784690
+    second: marineswordsman _19
+  - first:
+      213: -3940862891707359697
+    second: marineswordsman _20
+  - first:
+      213: 2883769723314395811
+    second: marineswordsman _21
+  - first:
+      213: 8343205832000026543
+    second: marineswordsman _22
+  - first:
+      213: -6746575944682404334
+    second: marineswordsman _23
+  - first:
+      213: 4055229425103941570
+    second: marineswordsman _24
+  - first:
+      213: 8112136881435942450
+    second: marineswordsman _25
+  - first:
+      213: 1118490097904636413
+    second: marineswordsman _26
+  - first:
+      213: -1747583635399186555
+    second: marineswordsman _27
+  - first:
+      213: 8050042734497752833
+    second: marineswordsman _28
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: marineswordsman _0
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 399
+        width: 45
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d80366f5d90a7980800000000000000
+      internalID: -8540502928788354859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: marineswordsman _1
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 399
+        width: 45
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4e55fc644bf0bcb0800000000000000
+      internalID: -4850100527373656502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: marineswordsman _2
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 390
+        width: 92
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d0864c67640b48e0800000000000000
+      internalID: -1708266791412268847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: marineswordsman _3
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 333
+        width: 31
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c13386bc97bd4950800000000000000
+      internalID: 6435001326287139267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: marineswordsman _4
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 333
+        width: 38
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7c3115bf9fdff660800000000000000
+      internalID: 7421896587960466559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: marineswordsman _5
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 333
+        width: 32
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0329749ab3dcfa4e0800000000000000
+      internalID: -1968128856010812880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: marineswordsman _6
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 334
+        width: 35
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97966d457ce865b90800000000000000
+      internalID: -7253453163060631175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: marineswordsman _7
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 264
+        width: 45
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85e9383f0138d09e0800000000000000
+      internalID: -1653521379346899368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: marineswordsman _8
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 265
+        width: 47
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab31223107cd95200800000000000000
+      internalID: 169408834918552506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: marineswordsman _9
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 265
+        width: 57
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1609dd6a7733acb20800000000000000
+      internalID: 3155391077920116833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: marineswordsman _10
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 306
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc5d19910ca75ea90800000000000000
+      internalID: -7285281856720611892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: marineswordsman _11
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 264
+        width: 57
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 402850497453b0820800000000000000
+      internalID: 2885458567803273732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: marineswordsman _12
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 212
+        width: 53
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f08ce642927fa400800000000000000
+      internalID: 337614469656772855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: marineswordsman _13
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 212
+        width: 50
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70a4a0439514acc10800000000000000
+      internalID: 2074542429738519047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: marineswordsman _14
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 149
+        width: 36
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99ce8609cd423d830800000000000000
+      internalID: 4094657015944113305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: marineswordsman _15
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 150
+        width: 35
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ddf73e757bd5329b0800000000000000
+      internalID: -5106134510473084963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: marineswordsman _16
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 150
+        width: 39
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b65035d4439a89290800000000000000
+      internalID: -7883365105611373205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: marineswordsman _17
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 149
+        width: 41
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dcd74c1eff3e2ca10800000000000000
+      internalID: 1928354278611910093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: marineswordsman _18
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 102
+        width: 45
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22ce8a7db8ac3cc40800000000000000
+      internalID: 5531487469308537890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: marineswordsman _19
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 84
+        width: 40
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8537a0f9ba5a7980800000000000000
+      internalID: -8540413988701784690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: marineswordsman _20
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 84
+        width: 40
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2e934f541e3f49c0800000000000000
+      internalID: -3940862891707359697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: marineswordsman _21
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 84
+        width: 43
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3aa5e24d845350820800000000000000
+      internalID: 2883769723314395811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: marineswordsman _22
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 34
+        width: 122
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa73450008509c370800000000000000
+      internalID: 8343205832000026543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: marineswordsman _23
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 34
+        width: 45
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21682075ce85f52a0800000000000000
+      internalID: -6746575944682404334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: marineswordsman _24
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 34
+        width: 47
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2cf28063da1174830800000000000000
+      internalID: 4055229425103941570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: marineswordsman _25
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 33
+        width: 53
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23e95538389149070800000000000000
+      internalID: 8112136881435942450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: marineswordsman _26
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 8
+        width: 52
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df1d56a61dca58f00800000000000000
+      internalID: 1118490097904636413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: marineswordsman _27
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 8
+        width: 49
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 587eeb451f55fb7e0800000000000000
+      internalID: -1747583635399186555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: marineswordsman _28
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 8
+        width: 53
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 107e370573f77bf60800000000000000
+      internalID: 8050042734497752833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      marineswordsman _0: -8540502928788354859
+      marineswordsman _1: -4850100527373656502
+      marineswordsman _10: -7285281856720611892
+      marineswordsman _11: 2885458567803273732
+      marineswordsman _12: 337614469656772855
+      marineswordsman _13: 2074542429738519047
+      marineswordsman _14: 4094657015944113305
+      marineswordsman _15: -5106134510473084963
+      marineswordsman _16: -7883365105611373205
+      marineswordsman _17: 1928354278611910093
+      marineswordsman _18: 5531487469308537890
+      marineswordsman _19: -8540413988701784690
+      marineswordsman _2: -1708266791412268847
+      marineswordsman _20: -3940862891707359697
+      marineswordsman _21: 2883769723314395811
+      marineswordsman _22: 8343205832000026543
+      marineswordsman _23: -6746575944682404334
+      marineswordsman _24: 4055229425103941570
+      marineswordsman _25: 8112136881435942450
+      marineswordsman _26: 1118490097904636413
+      marineswordsman _27: -1747583635399186555
+      marineswordsman _28: 8050042734497752833
+      marineswordsman _3: 6435001326287139267
+      marineswordsman _4: 7421896587960466559
+      marineswordsman _5: -1968128856010812880
+      marineswordsman _6: -7253453163060631175
+      marineswordsman _7: -1653521379346899368
+      marineswordsman _8: 169408834918552506
+      marineswordsman _9: 3155391077920116833
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

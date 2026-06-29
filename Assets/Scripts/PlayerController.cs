@@ -53,7 +53,6 @@ public class PlayerController : MonoBehaviour
 
     public void EndStartingPose()
     {
-        Debug.Log("EndStartingPose appelé !");
         _anim.SetBool("IsPosing", false);
         _movement = Vector2.zero;
         _rb.linearVelocity = Vector2.zero;
