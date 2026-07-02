@@ -11,12 +11,12 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float speed = 2f;
 
     [Header("Combat")]
-    [SerializeField] private float attackRange = 1f;
     [SerializeField] private float attackCooldown = 1.5f;
 
     private int _currentHealth;
     private float _attackTimer;
     private bool _isDead = false;
+    private bool _isInContact = false;
 
     private Rigidbody2D _rb;
     private Animator _anim;
@@ -46,26 +46,44 @@ public class EnemyController : MonoBehaviour
     {
         if (_isDead || _player == null) return;
 
-        float distance = Vector2.Distance(transform.position, _player.position);
-
-        if (distance > attackRange)
+        if (!_isInContact)
         {
             MoveTowardsPlayer();
         }
         else
         {
-            _rb.linearVelocity = Vector2.zero;
             _anim.SetFloat("Velocity", 0f);
             TryAttack();
         }
 
-        // Tri de profondeur
         _sr.sortingOrder = Mathf.RoundToInt(-transform.position.y * 10);
+    }
+
+
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.CompareTag("Player"))
+        {
+            _isInContact = true;
+            _rb.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
+        }
+    }
+
+
+    private void OnCollisionExit2D(Collision2D col)
+    {
+        if (col.gameObject.CompareTag("Player"))
+        {
+            _isInContact = false;
+            _rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        }
     }
 
 
     private void MoveTowardsPlayer()
     {
+        if (_player == null) return;
+
         Vector2 direction = (_player.position - transform.position).normalized;
         _rb.linearVelocity = direction * speed;
 
@@ -86,17 +104,11 @@ public class EnemyController : MonoBehaviour
     }
 
 
-    // Appelé par Animation Event sur le frame d'impact
     public void DealDamage()
     {
-        if (_isDead || _player == null) return;
+        if (_isDead || !_isInContact) return;
 
-        float distance = Vector2.Distance(transform.position, _player.position);
-
-        if (distance <= attackRange)
-        {
-            _player.GetComponent<PlayerController>().TakeDamage(attackDamage);
-        }
+        _player.GetComponent<PlayerController>().TakeDamage(attackDamage);
     }
 
 
@@ -118,16 +130,10 @@ public class EnemyController : MonoBehaviour
     {
         _isDead = true;
         _rb.linearVelocity = Vector2.zero;
+        _rb.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
         _anim.SetTrigger("Die");
 
         Destroy(gameObject, 1f);
-    }
-
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 
 
