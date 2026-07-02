@@ -14,8 +14,17 @@ public class PlayerController : MonoBehaviour
     private int maxHealth = 100;
 
     [SerializeField]
-    private int attackDamage = 10;
+    private int attackDamage = 25;
 
+
+    [Header("Attack")]
+    [SerializeField] private Transform attackPoint;
+    [SerializeField] private float attackRadius = 0.5f;
+    [SerializeField] private float attackCooldown = 1f;
+    [SerializeField] private LayerMask enemyLayer;
+
+    private float _attackTimer = 0f;
+    private bool _isAttacking = false;
 
     private int _currentHealth;
 
@@ -51,6 +60,7 @@ public class PlayerController : MonoBehaviour
         _anim.SetBool("IsPosing", true);
     }
 
+
     public void EndStartingPose()
     {
         _anim.SetBool("IsPosing", false);
@@ -63,6 +73,25 @@ public class PlayerController : MonoBehaviour
     private void OnMove(InputValue value)
     {
         _movement = value.Get<Vector2>();
+    }
+
+
+    private void OnAttack()
+    {
+        if (!_canMove) return;
+        if (_attackTimer > 0f) return;
+        if (_isAttacking) return;
+
+        _isAttacking = true;
+        _attackTimer = attackCooldown;
+        _anim.SetTrigger("Attack");
+    }
+
+
+    private void Update()
+    {
+        if (_attackTimer > 0f)
+            _attackTimer -= Time.deltaTime;
     }
 
 
@@ -89,6 +118,30 @@ public class PlayerController : MonoBehaviour
     }
 
 
+    public void DealDamage()
+    {
+        if (attackPoint == null) return;
+
+        Collider2D[] hits = Physics2D.OverlapCircleAll(
+            attackPoint.position,
+            attackRadius,
+            enemyLayer
+        );
+
+        foreach (Collider2D hit in hits)
+        {
+            EnemyController enemy = hit.GetComponentInParent<EnemyController>();
+            enemy?.TakeDamage(attackDamage);
+        }
+    }
+
+
+    public void EndAttack()
+    {
+        _isAttacking = false;
+    }
+
+
     public void TakeDamage(int damage)
     {
         _currentHealth -= damage;
@@ -106,6 +159,14 @@ public class PlayerController : MonoBehaviour
         _canMove = false;
         _rb.linearVelocity = Vector2.zero;
         Debug.Log($"{gameObject.name} est mort.");
+    }
+
+
+    private void OnDrawGizmosSelected()
+    {
+        if (attackPoint == null) return;
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(attackPoint.position, attackRadius);
     }
 
 
