@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Animator))]
@@ -26,7 +27,14 @@ public class PlayerController : MonoBehaviour
     private float _attackTimer = 0f;
     private bool _isAttacking = false;
 
+
+    [Header("Death")]
+    [SerializeField] private GameOverUI gameOverUI;
+    [SerializeField] private float deathAnimationDuration = 1.5f;
+
+
     private int _currentHealth;
+    private bool _isDead = false;
 
     private Rigidbody2D _rb;
     private Vector2 _movement;
@@ -144,6 +152,8 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        if (_isDead) return;
+
         _currentHealth -= damage;
 
         if (_currentHealth <= 0)
@@ -156,9 +166,23 @@ public class PlayerController : MonoBehaviour
 
     private void Die()
     {
+        if (_isDead) return;
+        _isDead = true;
+
         _canMove = false;
         _rb.linearVelocity = Vector2.zero;
-        Debug.Log($"{gameObject.name} est mort.");
+        _anim.SetTrigger("Die");
+
+        StartCoroutine(DieSequence());
+    }
+
+
+    private IEnumerator DieSequence()
+    {
+        yield return new WaitForSeconds(deathAnimationDuration);
+
+        if (gameOverUI != null)
+            gameOverUI.Show();
     }
 
 
