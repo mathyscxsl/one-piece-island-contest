@@ -29,7 +29,7 @@ public class UIManager : MonoBehaviour
         blackPanel.alpha = 0f;
         gameOverPanel.SetActive(false);
 
-        _player = FindFirstObjectByType<PlayerController>();
+        _player = FindAnyObjectByType<PlayerController>();
         if (_player != null)
         {
             _player.OnHealthChanged += UpdateHealthBar;
