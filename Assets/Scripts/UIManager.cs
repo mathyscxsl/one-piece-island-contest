@@ -7,53 +7,65 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance { get; private set; }
 
-    [Header("Health Bar")]
-    [SerializeField] private Slider healthSlider;
-
-    [Header("Game Over")]
-    [SerializeField] private CanvasGroup blackPanel;
-    [SerializeField] private GameObject gameOverPanel;
+    [Header("Game Over Timing")]
     [SerializeField] private float fadeDuration = 1f;
     [SerializeField] private float delayBeforeGameOver = 1f;
 
+    private Slider _healthSlider;
+    private CanvasGroup _blackPanel;
+    private GameObject _gameOverPanel;
     private PlayerController _player;
 
     private void Awake()
     {
         if (Instance != null && Instance != this) { Destroy(gameObject); return; }
         Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
-    private void Start()
+    private void OnEnable()
     {
-        blackPanel.alpha = 0f;
-        gameOverPanel.SetActive(false);
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    public void RegisterUI(Slider healthSlider, CanvasGroup blackPanel, GameObject gameOverPanel)
+    {
+        _healthSlider = healthSlider;
+        _blackPanel = blackPanel;
+        _gameOverPanel = gameOverPanel;
+
+        _blackPanel.alpha = 0f;
+        _gameOverPanel.SetActive(false);
+
+        if (_player != null)
+            UpdateHealthBar(_player.GetCurrentHealth(), _player.GetMaxHealth());
+    }
+
+    private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, LoadSceneMode mode)
+    {
+        if (_player != null)
+            _player.OnHealthChanged -= UpdateHealthBar;
+
+        GameManager.Instance.OnStateChanged -= OnGameStateChanged;
+        GameManager.Instance.OnStateChanged += OnGameStateChanged;
 
         _player = FindAnyObjectByType<PlayerController>();
         if (_player != null)
         {
             _player.OnHealthChanged += UpdateHealthBar;
-            UpdateHealthBar(_player.GetCurrentHealth(), _player.GetMaxHealth());
         }
-
-        if (GameManager.Instance != null)
-            GameManager.Instance.OnStateChanged += OnGameStateChanged;
-    }
-
-    private void OnDestroy()
-    {
-        if (_player != null)
-            _player.OnHealthChanged -= UpdateHealthBar;
-
-        if (GameManager.Instance != null)
-            GameManager.Instance.OnStateChanged -= OnGameStateChanged;
     }
 
     private void UpdateHealthBar(int current, int max)
     {
-        if (healthSlider == null) return;
-        healthSlider.maxValue = max;
-        healthSlider.value = current;
+        if (_healthSlider == null) return;
+        _healthSlider.maxValue = max;
+        _healthSlider.value = current;
     }
 
     private void OnGameStateChanged(GameManager.GameState state)
@@ -68,13 +80,13 @@ public class UIManager : MonoBehaviour
         while (elapsed < fadeDuration)
         {
             elapsed += Time.deltaTime;
-            blackPanel.alpha = Mathf.Clamp01(elapsed / fadeDuration);
+            _blackPanel.alpha = Mathf.Clamp01(elapsed / fadeDuration);
             yield return null;
         }
-        blackPanel.alpha = 1f;
+        _blackPanel.alpha = 1f;
 
         yield return new WaitForSeconds(delayBeforeGameOver);
-        gameOverPanel.SetActive(true);
+        _gameOverPanel.SetActive(true);
     }
 
     public void OnReplay()
