@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIRoot : MonoBehaviour
+public class UIController : MonoBehaviour
 {
     [SerializeField] private Slider healthSlider;
     [SerializeField] private CanvasGroup blackPanel;
