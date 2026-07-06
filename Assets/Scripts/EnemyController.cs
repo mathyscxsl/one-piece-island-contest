@@ -17,6 +17,7 @@ public class EnemyController : MonoBehaviour
     private float _attackTimer;
     private bool _isDead = false;
     private bool _isInContact = false;
+    private bool _gameOver = false;
 
     private Rigidbody2D _rb;
     private Animator _anim;
@@ -39,12 +40,31 @@ public class EnemyController : MonoBehaviour
         GameObject playerObj = GameObject.FindWithTag("Player");
         if (playerObj != null)
             _player = playerObj.transform;
+
+        if (GameManager.Instance != null)
+            GameManager.Instance.OnStateChanged += OnGameStateChanged;
+    }
+
+    private void OnDestroy()
+    {
+        if (GameManager.Instance != null)
+            GameManager.Instance.OnStateChanged -= OnGameStateChanged;
+    }
+
+    private void OnGameStateChanged(GameManager.GameState state)
+    {
+        if (state != GameManager.GameState.GameOver) return;
+
+        _gameOver = true;
+        _rb.linearVelocity = Vector2.zero;
+        _rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        _anim.speed = 0f;
     }
 
 
     private void FixedUpdate()
     {
-        if (_isDead || _player == null) return;
+        if (_isDead || _gameOver || _player == null) return;
 
         if (!_isInContact)
         {
@@ -106,7 +126,7 @@ public class EnemyController : MonoBehaviour
 
     public void DealDamage()
     {
-        if (_isDead || !_isInContact) return;
+        if (_isDead || _gameOver || !_isInContact) return;
 
         _player.GetComponent<PlayerController>().TakeDamage(attackDamage);
     }
