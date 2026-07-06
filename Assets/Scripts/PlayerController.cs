@@ -181,6 +181,7 @@ public class PlayerController : MonoBehaviour
     private IEnumerator DieSequence()
     {
         yield return new WaitForSeconds(deathAnimationDuration);
+        _anim.speed = 0f;
         OnDeath?.Invoke();
     }
 
