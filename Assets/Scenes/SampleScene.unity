@@ -210,7 +210,6 @@ GameObject:
   - component: {fileID: 117675154}
   - component: {fileID: 117675153}
   - component: {fileID: 117675152}
-  - component: {fileID: 117675156}
   m_Layer: 5
   m_Name: PlayerHealthBar
   m_TagString: Untagged
@@ -302,20 +301,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &117675156
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 117675151}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 766a104cc3bb3451aa5cabe48d3b370c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HealthBarUI
-  healthSlider: {fileID: 1487757374}
-  player: {fileID: 2065706012}
 --- !u!1 &177020372
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,7 +383,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 177020375}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 245239572}
+        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
+        m_MethodName: OnReplay
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &177020375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -551,13 +548,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 245239567}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07d553125bffa4022b2778e6eb3fd208, type: 3}
+  m_Script: {fileID: 11500000, guid: 82db4534839624924bdfe16fe084b7a1, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameOverUI
+  m_EditorClassIdentifier: Assembly-CSharp::UIRoot
+  healthSlider: {fileID: 1487757374}
   blackPanel: {fileID: 1330489901}
   gameOverPanel: {fileID: 2133643916}
-  fadeDuration: 1
-  delayBeforeGameOver: 1
 --- !u!1 &371877521
 GameObject:
   m_ObjectHideFlags: 0
@@ -1377,6 +1373,78 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1133589293}
   m_CullTransparentMesh: 1
+--- !u!1 &1305099060
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1305099064}
+  - component: {fileID: 1305099063}
+  - component: {fileID: 1305099062}
+  - component: {fileID: 1305099061}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1305099061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305099060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a54661d07addc4d4883ca7b99ad3c9f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SoundManager
+--- !u!114 &1305099062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305099060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24df4e5cf47804e9aa1c6ebcc8df8cae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIManager
+  fadeDuration: 1
+  delayBeforeGameOver: 1
+--- !u!114 &1305099063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305099060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c169bddb2a34e41bebf83c21b2aa57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
+--- !u!4 &1305099064
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305099060}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.18729, y: -2.30666, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1330489899
 GameObject:
   m_ObjectHideFlags: 0
@@ -2316,7 +2384,6 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 256
-  gameOverUI: {fileID: 245239572}
   deathAnimationDuration: 1.5
 --- !u!114 &2065706013
 MonoBehaviour:
@@ -2535,6 +2602,7 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1305099064}
   - {fileID: 519420032}
   - {fileID: 619394802}
   - {fileID: 1887685231}
