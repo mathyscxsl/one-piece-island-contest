@@ -29,8 +29,10 @@ public class PlayerController : MonoBehaviour
 
 
     [Header("Death")]
-    [SerializeField] private GameOverUI gameOverUI;
     [SerializeField] private float deathAnimationDuration = 1.5f;
+
+    public event Action<int, int> OnHealthChanged;
+    public event Action OnDeath;
 
 
     private int _currentHealth;
@@ -154,13 +156,11 @@ public class PlayerController : MonoBehaviour
     {
         if (_isDead) return;
 
-        _currentHealth -= damage;
+        _currentHealth = Mathf.Max(_currentHealth - damage, 0);
+        OnHealthChanged?.Invoke(_currentHealth, maxHealth);
 
         if (_currentHealth <= 0)
-        {
-            _currentHealth = 0;
             Die();
-        }
     }
 
 
@@ -180,9 +180,7 @@ public class PlayerController : MonoBehaviour
     private IEnumerator DieSequence()
     {
         yield return new WaitForSeconds(deathAnimationDuration);
-
-        if (gameOverUI != null)
-            gameOverUI.Show();
+        OnDeath?.Invoke();
     }
 
 
