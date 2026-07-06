@@ -11,4 +11,9 @@ public class UIController : MonoBehaviour
     {
         UIManager.Instance?.RegisterUI(healthSlider, blackPanel, gameOverPanel);
     }
+
+    public void OnReplay()
+    {
+        UIManager.Instance?.OnReplay();
+    }
 }
