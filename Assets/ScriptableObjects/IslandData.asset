@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20f4b09f4f339476db154f7d07db82ee, type: 3}
+  m_Name: IslandData
+  m_EditorClassIdentifier: Assembly-CSharp::IslandData
+  islandName: Island_1
+  monsterPrefab: {fileID: 9141600023856752133, guid: 261d15a6fd7c64b929e17dee2218fb07, type: 3}
+  bossPrefab: {fileID: 0}
+  monsterCount: 5
