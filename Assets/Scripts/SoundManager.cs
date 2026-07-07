@@ -7,9 +7,11 @@ public class SoundManager : MonoBehaviour
 
     [Header("Music")]
     [SerializeField] private AudioClip backgroundMusic;
+    [SerializeField, Range(0f, 1f)] private float musicVolume = 0.4f;
 
     [Header("Sounds")]
     [SerializeField] private AudioClip gameOverSound;
+    [SerializeField, Range(0f, 1f)] private float sfxVolume = 1f;
 
     private AudioSource _musicSource;
 
@@ -22,6 +24,7 @@ public class SoundManager : MonoBehaviour
         _musicSource = GetComponent<AudioSource>();
         _musicSource.loop = true;
         _musicSource.playOnAwake = false;
+        _musicSource.volume = musicVolume;
     }
 
     private void Start()
@@ -56,6 +59,6 @@ public class SoundManager : MonoBehaviour
     public void PlaySFX(AudioClip clip)
     {
         if (clip == null) return;
-        AudioSource.PlayClipAtPoint(clip, Vector3.zero);
+        AudioSource.PlayClipAtPoint(clip, Vector3.zero, sfxVolume);
     }
 }
