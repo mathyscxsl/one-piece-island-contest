@@ -6,6 +6,7 @@ using System;
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(AudioSource))]
 public class PlayerController : MonoBehaviour
 {
     [Header("Stats")]
@@ -32,6 +33,12 @@ public class PlayerController : MonoBehaviour
     [Header("Death")]
     [SerializeField] private float deathAnimationDuration = 1.5f;
 
+    [Header("Sounds")]
+    [SerializeField] private AudioClip introSound;
+    [SerializeField] private AudioClip attackSound;
+    [SerializeField] private AudioClip hurtSound;
+    [SerializeField] private AudioClip deathSound;
+
     public event Action<int, int> OnHealthChanged;
     public event Action OnDeath;
 
@@ -43,6 +50,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 _movement;
     private Animator _anim;
     private SpriteRenderer _sr;
+    private AudioSource _audioSource;
 
     private bool _canMove = false;
 
@@ -52,6 +60,7 @@ public class PlayerController : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
         _sr = GetComponent<SpriteRenderer>();
+        _audioSource = GetComponent<AudioSource>();
 
         _currentHealth = maxHealth;
     }
@@ -69,6 +78,7 @@ public class PlayerController : MonoBehaviour
         _movement = Vector2.zero;
         _rb.linearVelocity = Vector2.zero;
         _anim.SetBool("IsPosing", true);
+        _audioSource.PlayOneShot(introSound);
     }
 
 
@@ -96,6 +106,7 @@ public class PlayerController : MonoBehaviour
         _isAttacking = true;
         _attackTimer = attackCooldown;
         _anim.SetTrigger("Attack");
+        _audioSource.PlayOneShot(attackSound);
     }
 
 
@@ -162,6 +173,8 @@ public class PlayerController : MonoBehaviour
 
         if (_currentHealth <= 0)
             Die();
+        else
+            _audioSource.PlayOneShot(hurtSound);
     }
 
 
@@ -173,6 +186,7 @@ public class PlayerController : MonoBehaviour
         _canMove = false;
         _rb.linearVelocity = Vector2.zero;
         _anim.SetTrigger("Die");
+        _audioSource.PlayOneShot(deathSound);
 
         StartCoroutine(DieSequence());
     }

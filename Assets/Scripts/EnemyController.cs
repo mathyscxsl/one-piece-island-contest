@@ -3,6 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(AudioSource))]
 public class EnemyController : MonoBehaviour
 {
     [Header("Stats")]
@@ -13,6 +14,11 @@ public class EnemyController : MonoBehaviour
     [Header("Combat")]
     [SerializeField] private float attackCooldown = 1.5f;
 
+    [Header("Sounds")]
+    [SerializeField] private AudioClip attackSound;
+    [SerializeField] private AudioClip hurtSound;
+    [SerializeField] private AudioClip deathSound;
+
     private int _currentHealth;
     private float _attackTimer;
     private bool _isDead = false;
@@ -22,6 +28,7 @@ public class EnemyController : MonoBehaviour
     private Rigidbody2D _rb;
     private Animator _anim;
     private SpriteRenderer _sr;
+    private AudioSource _audioSource;
     private Transform _player;
 
 
@@ -30,6 +37,7 @@ public class EnemyController : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
         _sr = GetComponent<SpriteRenderer>();
+        _audioSource = GetComponent<AudioSource>();
 
         _currentHealth = maxHealth;
     }
@@ -128,6 +136,7 @@ public class EnemyController : MonoBehaviour
     {
         if (_isDead || _gameOver || !_isInContact) return;
 
+        _audioSource.PlayOneShot(attackSound);
         _player.GetComponent<PlayerController>().TakeDamage(attackDamage);
     }
 
@@ -143,6 +152,10 @@ public class EnemyController : MonoBehaviour
             _currentHealth = 0;
             Die();
         }
+        else
+        {
+            _audioSource.PlayOneShot(hurtSound);
+        }
     }
 
 
@@ -152,6 +165,7 @@ public class EnemyController : MonoBehaviour
         _rb.linearVelocity = Vector2.zero;
         _rb.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
         _anim.SetTrigger("Die");
+        _audioSource.PlayOneShot(deathSound);
 
         Destroy(gameObject, 1f);
     }
