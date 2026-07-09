@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Animator))]
@@ -18,6 +19,8 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private AudioClip attackSound;
     [SerializeField] private AudioClip hurtSound;
     [SerializeField] private AudioClip deathSound;
+
+    public event Action<int, int> OnHealthChanged;
 
     private int _currentHealth;
     private float _attackTimer;
@@ -145,17 +148,13 @@ public class EnemyController : MonoBehaviour
     {
         if (_isDead) return;
 
-        _currentHealth -= damage;
+        _currentHealth = Mathf.Max(_currentHealth - damage, 0);
+        OnHealthChanged?.Invoke(_currentHealth, maxHealth);
 
         if (_currentHealth <= 0)
-        {
-            _currentHealth = 0;
             Die();
-        }
         else
-        {
             _audioSource.PlayOneShot(hurtSound);
-        }
     }
 
 
@@ -172,4 +171,5 @@ public class EnemyController : MonoBehaviour
 
 
     public int GetCurrentHealth() => _currentHealth;
+    public int GetMaxHealth() => maxHealth;
 }
