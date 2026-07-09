@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(AudioSource))]
 public class SoundManager : MonoBehaviour
@@ -27,23 +28,33 @@ public class SoundManager : MonoBehaviour
         _musicSource.volume = musicVolume;
     }
 
-    private void Start()
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene _, LoadSceneMode __)
     {
         if (GameManager.Instance != null)
+        {
+            GameManager.Instance.OnStateChanged -= OnGameStateChanged;
             GameManager.Instance.OnStateChanged += OnGameStateChanged;
+        }
+
+        PlayMusic(backgroundMusic);
     }
 
     private void OnGameStateChanged(GameManager.GameState state)
     {
-        switch (state)
+        if (state == GameManager.GameState.GameOver)
         {
-            case GameManager.GameState.Starting:
-                PlayMusic(backgroundMusic);
-                break;
-            case GameManager.GameState.GameOver:
-                _musicSource.Stop();
-                PlaySFX(gameOverSound);
-                break;
+            _musicSource.Stop();
+            PlaySFX(gameOverSound);
         }
     }
 
