@@ -131,6 +131,7 @@ public class EnemyController : MonoBehaviour
         {
             _attackTimer = attackCooldown;
             _anim.SetTrigger("Attack");
+            _audioSource.PlayOneShot(attackSound);
         }
     }
 
@@ -139,7 +140,6 @@ public class EnemyController : MonoBehaviour
     {
         if (_isDead || _gameOver || !_isInContact) return;
 
-        _audioSource.PlayOneShot(attackSound);
         _player.GetComponent<PlayerController>().TakeDamage(attackDamage);
     }
 
