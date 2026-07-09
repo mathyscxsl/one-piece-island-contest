@@ -31,8 +31,6 @@ public class SoundManager : MonoBehaviour
     {
         if (GameManager.Instance != null)
             GameManager.Instance.OnStateChanged += OnGameStateChanged;
-
-        PlayMusic(backgroundMusic);
     }
 
     private void OnGameStateChanged(GameManager.GameState state)
