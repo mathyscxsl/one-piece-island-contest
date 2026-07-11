@@ -14,6 +14,7 @@ public class EnemyController : MonoBehaviour
 
     [Header("Combat")]
     [SerializeField] private float attackCooldown = 1.5f;
+    [SerializeField] private float contactDistance = 1f;
 
     [Header("Sounds")]
     [SerializeField] private AudioClip attackSound;
@@ -43,6 +44,9 @@ public class EnemyController : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
 
         _currentHealth = maxHealth;
+        _rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+        _rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        _rb.excludeLayers = LayerMask.GetMask("Player");
     }
 
 
@@ -77,12 +81,15 @@ public class EnemyController : MonoBehaviour
     {
         if (_isDead || _gameOver || _player == null) return;
 
+        _isInContact = Vector2.Distance(transform.position, _player.position) <= contactDistance;
+
         if (!_isInContact)
         {
             MoveTowardsPlayer();
         }
         else
         {
+            _rb.linearVelocity = Vector2.zero;
             _anim.SetFloat("Velocity", 0f);
             TryAttack();
         }
@@ -91,35 +98,39 @@ public class EnemyController : MonoBehaviour
     }
 
 
-    private void OnCollisionEnter2D(Collision2D col)
-    {
-        if (col.gameObject.CompareTag("Player"))
-        {
-            _isInContact = true;
-            _rb.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
-        }
-    }
-
-
-    private void OnCollisionExit2D(Collision2D col)
-    {
-        if (col.gameObject.CompareTag("Player"))
-        {
-            _isInContact = false;
-            _rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-        }
-    }
-
-
     private void MoveTowardsPlayer()
     {
         if (_player == null) return;
 
-        Vector2 direction = (_player.position - transform.position).normalized;
+        Vector2 toPlayer = (_player.position - transform.position).normalized;
+        Vector2 separation = GetSeparation();
+
+        // Keep only the lateral component to avoid oscillation
+        separation -= Vector2.Dot(separation, toPlayer) * toPlayer;
+        separation = Vector2.ClampMagnitude(separation, 1f);
+
+        Vector2 direction = (toPlayer + separation).normalized;
+
         _rb.linearVelocity = direction * speed;
 
         _sr.flipX = direction.x > 0;
         _anim.SetFloat("Velocity", 1f);
+    }
+
+
+    private Vector2 GetSeparation()
+    {
+        Vector2 result = Vector2.zero;
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, 1.2f);
+        foreach (Collider2D hit in hits)
+        {
+            EnemyController other = hit.GetComponentInParent<EnemyController>();
+            if (other == null || other == this) continue;
+            Vector2 away = (Vector2)(transform.position - hit.transform.position);
+            if (away.sqrMagnitude > 0f)
+                result += away.normalized;
+        }
+        return result;
     }
 
 

@@ -63,6 +63,7 @@ public class PlayerController : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
 
         _currentHealth = maxHealth;
+        _rb.mass = 100f;
     }
 
 
