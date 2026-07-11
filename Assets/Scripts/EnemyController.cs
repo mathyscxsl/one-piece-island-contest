@@ -131,14 +131,10 @@ public class EnemyController : MonoBehaviour
         {
             _attackTimer = attackCooldown;
             _anim.SetTrigger("Attack");
+            _audioSource.PlayOneShot(attackSound);
         }
     }
 
-
-    public void PlayAttackSound()
-    {
-        _audioSource.PlayOneShot(attackSound);
-    }
 
     public void DealDamage()
     {
