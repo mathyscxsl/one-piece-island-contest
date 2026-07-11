@@ -624,7 +624,7 @@ MonoBehaviour:
   attackDamage: 25
   speed: 4
   attackCooldown: 2
-  attackSound: {fileID: 0}
+  attackSound: {fileID: 8300000, guid: acbcd9537887c4e60b842382b4294796, type: 3}
   hurtSound: {fileID: 0}
   deathSound: {fileID: 0}
 --- !u!61 &5499934548870606915
