@@ -174,6 +174,7 @@ public class EnemyController : MonoBehaviour
         _isDead = true;
         _rb.linearVelocity = Vector2.zero;
         _rb.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
+        _anim.ResetTrigger("Attack");
         _anim.SetTrigger("Die");
         _audioSource.PlayOneShot(deathSound);
 
