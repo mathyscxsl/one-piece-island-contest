@@ -22,6 +22,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private AudioClip deathSound;
 
     public event Action<int, int> OnHealthChanged;
+    public event Action OnDeath;
 
     private int _currentHealth;
     private float _attackTimer;
@@ -175,6 +176,14 @@ public class EnemyController : MonoBehaviour
     }
 
 
+    public void Configure(float healthMult, float damageMult)
+    {
+        maxHealth = Mathf.RoundToInt(maxHealth * healthMult);
+        attackDamage = Mathf.RoundToInt(attackDamage * damageMult);
+        _currentHealth = maxHealth;
+    }
+
+
     private void Die()
     {
         _isDead = true;
@@ -183,6 +192,7 @@ public class EnemyController : MonoBehaviour
         _anim.ResetTrigger("Attack");
         _anim.SetTrigger("Die");
         _audioSource.PlayOneShot(deathSound);
+        OnDeath?.Invoke();
 
         Destroy(gameObject, 1f);
     }
