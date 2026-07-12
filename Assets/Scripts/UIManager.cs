@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
@@ -15,6 +16,10 @@ public class UIManager : MonoBehaviour
     private CanvasGroup _blackPanel;
     private GameObject _gameOverPanel;
     private PlayerController _player;
+
+    private TMP_Text _waveText;
+    private TMP_Text _enemiesText;
+    private WaveManager _waveManager;
 
     private void Awake()
     {
@@ -31,6 +36,15 @@ public class UIManager : MonoBehaviour
     private void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    public void RegisterWaveUI(TMP_Text waveText, TMP_Text enemiesText)
+    {
+        _waveText = waveText;
+        _enemiesText = enemiesText;
+
+        if (_waveText != null) _waveText.text = "Vague : 1";
+        if (_enemiesText != null) _enemiesText.text = "Ennemis restants : 0";
     }
 
     public void RegisterUI(Slider healthSlider, CanvasGroup blackPanel, GameObject gameOverPanel)
@@ -51,14 +65,37 @@ public class UIManager : MonoBehaviour
         if (_player != null)
             _player.OnHealthChanged -= UpdateHealthBar;
 
+        if (_waveManager != null)
+        {
+            _waveManager.OnWaveStarted -= UpdateWaveText;
+            _waveManager.OnEnemiesAliveChanged -= UpdateEnemiesText;
+        }
+
         GameManager.Instance.OnStateChanged -= OnGameStateChanged;
         GameManager.Instance.OnStateChanged += OnGameStateChanged;
 
         _player = FindAnyObjectByType<PlayerController>();
         if (_player != null)
-        {
             _player.OnHealthChanged += UpdateHealthBar;
+
+        _waveManager = FindAnyObjectByType<WaveManager>();
+        if (_waveManager != null)
+        {
+            _waveManager.OnWaveStarted += UpdateWaveText;
+            _waveManager.OnEnemiesAliveChanged += UpdateEnemiesText;
         }
+    }
+
+    private void UpdateWaveText(int wave)
+    {
+        if (_waveText != null)
+            _waveText.text = $"Vague : {wave}";
+    }
+
+    private void UpdateEnemiesText(int count)
+    {
+        if (_enemiesText != null)
+            _enemiesText.text = $"Ennemis restants : {count}";
     }
 
     private void UpdateHealthBar(int current, int max)
