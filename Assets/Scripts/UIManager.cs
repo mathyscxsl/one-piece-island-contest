@@ -45,6 +45,19 @@ public class UIManager : MonoBehaviour
 
         if (_waveText != null) _waveText.text = "Vague : 1";
         if (_enemiesText != null) _enemiesText.text = "Ennemis restants : 0";
+
+        if (_waveManager != null)
+        {
+            _waveManager.OnWaveStarted -= UpdateWaveText;
+            _waveManager.OnEnemiesAliveChanged -= UpdateEnemiesText;
+        }
+
+        _waveManager = FindAnyObjectByType<WaveManager>();
+        if (_waveManager != null)
+        {
+            _waveManager.OnWaveStarted += UpdateWaveText;
+            _waveManager.OnEnemiesAliveChanged += UpdateEnemiesText;
+        }
     }
 
     public void RegisterUI(Slider healthSlider, CanvasGroup blackPanel, GameObject gameOverPanel)
@@ -62,6 +75,8 @@ public class UIManager : MonoBehaviour
 
     private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, LoadSceneMode mode)
     {
+        StopAllCoroutines();
+
         if (_player != null)
             _player.OnHealthChanged -= UpdateHealthBar;
 
@@ -77,13 +92,6 @@ public class UIManager : MonoBehaviour
         _player = FindAnyObjectByType<PlayerController>();
         if (_player != null)
             _player.OnHealthChanged += UpdateHealthBar;
-
-        _waveManager = FindAnyObjectByType<WaveManager>();
-        if (_waveManager != null)
-        {
-            _waveManager.OnWaveStarted += UpdateWaveText;
-            _waveManager.OnEnemiesAliveChanged += UpdateEnemiesText;
-        }
     }
 
     private void UpdateWaveText(int wave)

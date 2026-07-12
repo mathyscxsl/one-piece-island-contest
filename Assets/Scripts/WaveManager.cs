@@ -1,11 +1,10 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using System;
 
 public class WaveManager : MonoBehaviour
 {
-    public static WaveManager Instance { get; private set; }
-
     [Header("Spawn")]
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private Transform[] spawnPoints;
@@ -23,32 +22,51 @@ public class WaveManager : MonoBehaviour
     public event Action<int> OnWaveStarted;
     public event Action<int> OnEnemiesAliveChanged;
 
-    public int CurrentWave => _currentWave;
-
     private int _currentWave = 0;
     private int _enemiesAlive = 0;
     private bool _waveSpawning = false;
     private bool _gameOver = false;
 
 
-    private void Awake()
+    private void OnEnable()
     {
-        if (Instance != null && Instance != this) { Destroy(gameObject); return; }
-        Instance = this;
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    private void Start()
+    private void OnDisable()
     {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        StopAllCoroutines();
+
+        _currentWave = 0;
+        _enemiesAlive = 0;
+        _waveSpawning = false;
+        _gameOver = false;
+
+        RefreshSpawnPoints();
+
         if (GameManager.Instance != null)
+        {
+            GameManager.Instance.OnStateChanged -= OnGameStateChanged;
             GameManager.Instance.OnStateChanged += OnGameStateChanged;
+        }
 
         StartCoroutine(StartNextWave());
     }
 
-    private void OnDestroy()
+    private void RefreshSpawnPoints()
     {
-        if (GameManager.Instance != null)
-            GameManager.Instance.OnStateChanged -= OnGameStateChanged;
+        GameObject parent = GameObject.Find("SpawnPoints");
+        if (parent == null) return;
+
+        int count = parent.transform.childCount;
+        spawnPoints = new Transform[count];
+        for (int i = 0; i < count; i++)
+            spawnPoints[i] = parent.transform.GetChild(i);
     }
 
     private void OnGameStateChanged(GameManager.GameState state)
