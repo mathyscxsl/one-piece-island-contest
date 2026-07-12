@@ -64,6 +64,7 @@ public class PlayerController : MonoBehaviour
 
         _currentHealth = maxHealth;
         _rb.mass = 100f;
+        _rb.excludeLayers = LayerMask.GetMask("Enemy");
     }
 
 
