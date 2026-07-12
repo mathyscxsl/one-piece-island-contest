@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour
 
     private TMP_Text _waveText;
     private TMP_Text _enemiesText;
+    private TMP_Text _wavesSurvivedText;
     private WaveManager _waveManager;
 
     private void Awake()
@@ -59,6 +60,8 @@ public class UIManager : MonoBehaviour
             _waveManager.OnEnemiesAliveChanged += UpdateEnemiesText;
         }
     }
+
+    public void RegisterWavesSurvivedText(TMP_Text text) => _wavesSurvivedText = text;
 
     public void RegisterUI(Slider healthSlider, CanvasGroup blackPanel, GameObject gameOverPanel)
     {
@@ -115,8 +118,12 @@ public class UIManager : MonoBehaviour
 
     private void OnGameStateChanged(GameManager.GameState state)
     {
-        if (state == GameManager.GameState.GameOver)
-            StartCoroutine(GameOverSequence());
+        if (state != GameManager.GameState.GameOver) return;
+
+        if (_wavesSurvivedText != null && _waveManager != null)
+            _wavesSurvivedText.text = $"Vagues survécues : {_waveManager.CurrentWave}";
+
+        StartCoroutine(GameOverSequence());
     }
 
     private IEnumerator GameOverSequence()
