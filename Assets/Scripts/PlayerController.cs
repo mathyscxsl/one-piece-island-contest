@@ -136,7 +136,8 @@ public class PlayerController : MonoBehaviour
         if (Mathf.Abs(_movement.x) > 0.01f)
         {
             _anim.SetFloat("LastHorizontal", _movement.x);
-            _sr.flipX = _movement.x < 0;
+            float scaleX = _movement.x < 0 ? -1f : 1f;
+            transform.localScale = new Vector3(scaleX, 1f, 1f);
         }
     }
 
