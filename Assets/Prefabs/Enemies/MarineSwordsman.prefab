@@ -624,9 +624,10 @@ MonoBehaviour:
   attackDamage: 25
   speed: 4
   attackCooldown: 2
+  contactDistance: 1
   attackSound: {fileID: 8300000, guid: acbcd9537887c4e60b842382b4294796, type: 3}
-  hurtSound: {fileID: 0}
-  deathSound: {fileID: 0}
+  hurtSound: {fileID: 8300000, guid: 7c80781ec03a44de29a9394fed475fe2, type: 3}
+  deathSound: {fileID: 8300000, guid: 9da04fa4d2ad147849a81522b81eebf2, type: 3}
 --- !u!61 &5499934548870606915
 BoxCollider2D:
   m_ObjectHideFlags: 0
