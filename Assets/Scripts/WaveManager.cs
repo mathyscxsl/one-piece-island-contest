@@ -19,8 +19,15 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private float healthMultiplier = 1.5f;
     [SerializeField] private float damageMultiplier = 1.3f;
 
+    [Header("Item Drops")]
+    [SerializeField] private GameObject[] itemPrefabs;
+    [SerializeField] [Range(0f, 1f)] private float itemDropChance = 0.25f;
+    [SerializeField] private int maxItemsOnGround = 2;
+
     public event Action<int> OnWaveStarted;
     public event Action<int> OnEnemiesAliveChanged;
+
+    public int CurrentWave => _currentWave;
 
     private int _currentWave = 0;
     private int _enemiesAlive = 0;
@@ -100,7 +107,10 @@ public class WaveManager : MonoBehaviour
         _waveSpawning = false;
 
         if (_enemiesAlive <= 0 && !_gameOver)
+        {
+            SpawnWaveReward();
             StartCoroutine(StartNextWave());
+        }
     }
 
 
@@ -115,17 +125,53 @@ public class WaveManager : MonoBehaviour
         if (enemy == null) return;
 
         enemy.Configure(hpMult, dmgMult);
-        enemy.OnDeath += OnEnemyDied;
+        enemy.OnDeath += () => OnEnemyDied(enemy);
         _enemiesAlive++;
         OnEnemiesAliveChanged?.Invoke(_enemiesAlive);
     }
 
 
-    private void OnEnemyDied()
+    private void OnEnemyDied(EnemyController enemy)
     {
+        Vector3 pos = enemy != null ? enemy.transform.position : Vector3.zero;
         _enemiesAlive--;
         OnEnemiesAliveChanged?.Invoke(_enemiesAlive);
+
+        TryDropItem(pos);
+
         if (_enemiesAlive <= 0 && !_waveSpawning && !_gameOver)
+        {
+            SpawnWaveReward();
             StartCoroutine(StartNextWave());
+        }
+    }
+
+    private bool CanSpawnItem()
+    {
+        if (itemPrefabs == null || itemPrefabs.Length == 0) return false;
+        return FindObjectsByType<ItemPickup>(FindObjectsSortMode.None).Length < maxItemsOnGround;
+    }
+
+    private void SpawnItem(Vector3 position)
+    {
+        int index = UnityEngine.Random.Range(0, itemPrefabs.Length);
+        if (itemPrefabs[index] != null)
+            Instantiate(itemPrefabs[index], position, Quaternion.identity);
+    }
+
+    private void TryDropItem(Vector3 position)
+    {
+        if (!CanSpawnItem()) return;
+        if (UnityEngine.Random.value > itemDropChance) return;
+        SpawnItem(position);
+    }
+
+    private void SpawnWaveReward()
+    {
+        if (!CanSpawnItem()) return;
+        if (spawnPoints == null || spawnPoints.Length == 0) return;
+
+        Transform point = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length)];
+        SpawnItem(point.position);
     }
 }

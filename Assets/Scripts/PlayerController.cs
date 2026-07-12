@@ -211,6 +211,17 @@ public class PlayerController : MonoBehaviour
     }
 
 
+    public void AddMaxHealth(int amount)
+    {
+        maxHealth += amount;
+        _currentHealth = Mathf.Min(_currentHealth + amount, maxHealth);
+        OnHealthChanged?.Invoke(_currentHealth, maxHealth);
+    }
+
+    public void AddDamage(int amount) => attackDamage += amount;
+
+    public void AddSpeed(float amount) => speed += amount;
+
     public int GetCurrentHealth() => _currentHealth;
     public int GetMaxHealth() => maxHealth;
     public int GetAttackDamage() => attackDamage;
